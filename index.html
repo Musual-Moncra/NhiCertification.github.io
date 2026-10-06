@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celestial Isle — Bản Đồ Roblox Island | Hồ Đặng Ý Nhi</title>
+  <meta name="description" content="Trang giới thiệu tác phẩm bản đồ Roblox Map Island phong cách Á Đông huyền bí được thiết kế bởi Hồ Đặng Ý Nhi. Thiết kế tối giản trắng đen hiện đại." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              black: '#09090b',
+              dark: '#121215',
+              card: '#18181b',
+              border: '#27272a',
+              muted: '#71717a',
+              light: '#f4f4f5',
+              white: '#ffffff',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Minimalist Monochrome Styles */
+    :root {
+      --bg-base: #09090b;
+      --bg-card: #121215;
+      --bg-subtle: #18181b;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --border-hover: rgba(255, 255, 255, 0.28);
+      --text-main: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --accent: #ffffff;
+      --grid-pattern: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    }
+
+    html:not(.dark) {
+      --bg-base: #fafafa;
+      --bg-card: #ffffff;
+      --bg-subtle: #f4f4f5;
+      --border-color: rgba(0, 0, 0, 0.1);
+      --border-hover: rgba(0, 0, 0, 0.3);
+      --text-main: #09090b;
+      --text-muted: #52525b;
+      --accent: #000000;
+      --grid-pattern: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Architectural Grid Background */
+    .bg-grid {
+      background-image: var(--grid-pattern);
+      background-size: 28px 28px;
+    }
+
+    /* Subtle Glassmorphism */
+    .glass-nav {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background-color: rgba(9, 9, 11, 0.78);
+      border-bottom: 1px solid var(--border-color);
+    }
+    html:not(.dark) .glass-nav {
+      background-color: rgba(250, 250, 250, 0.82);
+    }
+
+    /* Monochrome Card border glow */
+    .mono-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mono-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-base);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3f3f46;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #71717a;
+    }
+
+    /* Image zoom on hover */
+    .image-zoom-container {
+      overflow: hidden;
+    }
+    .image-zoom-container img {
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .image-zoom-container:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Scanline / Film Grain subtle overlay */
+    .architectural-crosshair {
+      position: relative;
+    }
+    .architectural-crosshair::before,
+    .architectural-crosshair::after {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+    }
+
+    /* Animation utility */
+    @keyframes pulseFade {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 0.95; }
+    }
+    .animate-pulse-subtle {
+      animation: pulseFade 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen font-sans selection:bg-white selection:text-black dark:selection:bg-white dark:selection:text-black">
+
+  <!-- TOP MINIMALIST TICKER / BAR -->
+  <aside aria-label="Announcement" class="border-b border-neutral-200 dark:border-neutral-800/80 bg-neutral-100/50 dark:bg-neutral-950/80 text-[11px] font-mono tracking-wider uppercase text-neutral-500 dark:text-neutral-400 py-1.5 px-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-ping"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block -ml-3"></span>
+          <span>ROBLOX STUDIO ENVIRONMENT // ORIGINAL BUILD</span>
+        </span>
+        <span class="hidden sm:inline text-neutral-300 dark:text-neutral-700">|</span>
+        <span class="hidden sm:inline">CREATOR: HỒ ĐẶNG Ý NHI</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>ARCHIVE REF: HYN-ISLAND-2026</span>
+        <span class="hidden md:inline">EDITION: 1.0.0</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- NAVIGATION -->
+  <header class="sticky top-0 z-40 glass-nav transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Monogram & Creator Name -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-200/50 dark:bg-neutral-900 flex items-center justify-center font-mono font-bold text-xs tracking-tighter group-hover:border-neutral-900 dark:group-hover:border-white transition-colors">
+          ÝN
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xs font-mono tracking-widest text-neutral-500 dark:text-neutral-400 uppercase">Roblox Architecture</span>
+          <span class="text-sm font-semibold tracking-tight text-neutral-900 dark:text-white font-display">Hồ Đặng Ý Nhi</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
+        <a href="#overview" class="hover:text-black dark:hover:text-white transition-colors">Tổng Quan</a>
+        <a href="#hero-showcase" class="hover:text-black dark:hover:text-white transition-colors">Góc Nhìn</a>
+        <a href="#gallery" class="hover:text-black dark:hover:text-white transition-colors">Bộ Sưu Tập</a>
+        <a href="#specifications" class="hover:text-black dark:hover:text-white transition-colors">Thông Số</a>
+        <a href="#certification" class="hover:text-black dark:hover:text-white transition-colors">Chứng Nhận</a>
+      </nav>
+
+      <!-- Action & Theme Switch -->
+      <div class="flex items-center gap-3">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggle" aria-label="Chuyển chế độ sáng tối" class="p-2 rounded-lg border border-neutral-300 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors">
+          <!-- Moon Icon (Dark Mode Active) -->
+          <svg id="moonIcon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.03 9.03 0 008.354-5.646z"></path>
+          </svg>
+          <!-- Sun Icon (Light Mode Active) -->
+          <svg id="sunIcon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+        </button>
+
+        <!-- CTA Button -->
+        <a href="#gallery" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-black text-xs font-mono uppercase tracking-wider font-semibold hover:opacity-90 transition-opacity">
+          <span>Xem Bản Đồ</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER WITH ARCHITECTURAL GRID BACKGROUND -->
+  <main class="relative bg-grid overflow-hidden">
+
+    <!-- ========================================================================= -->
+    <!-- HERO SECTION (CENTERED HERO / HERO Ở GIỮA) -->
+    <!-- ========================================================================= -->
+    <section id="overview" class="relative pt-16 pb-20 md:pt-24 md:pb-28 border-b border-neutral-200 dark:border-neutral-800">
+      
+      <!-- Ambient light effect in dark mode -->
+      <div class="absolute inset-0 flex justify-center pointer-events-none -z-10 overflow-hidden">
+        <div class="w-[700px] h-[350px] bg-neutral-200/40 dark:bg-white/[0.04] blur-[120px] rounded-full mt-10"></div>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+        <!-- Top Monospace Label & Status -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-neutral-300 dark:border-neutral-800 bg-neutral-100/80 dark:bg-neutral-900/80 text-[11px] font-mono tracking-widest uppercase text-neutral-600 dark:text-neutral-400 mb-6 shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-black dark:bg-white"></span>
+          <span>ROBLOX ISLAND MAP PRODUCT</span>
+          <span class="text-neutral-400 dark:text-neutral-600">•</span>
+          <span class="text-black dark:text-white font-medium">BY HỒ ĐẶNG Ý NHI</span>
+        </div>
+
+        <!-- Primary Centered Title -->
+        <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-neutral-900 dark:text-white uppercase leading-[1.05] mb-4">
+          CELESTIAL ISLE
+          <span class="block text-2xl sm:text-4xl md:text-5xl font-light tracking-wide text-neutral-500 dark:text-neutral-400 mt-2 font-sans normal-case">
+            Đảo Tiên Á Đông Huyền Bí
+          </span>
+        </h1>
+
+        <!-- Centered Subtitle & Concept Description -->
+        <p class="max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-neutral-600 dark:text-neutral-400 font-normal leading-relaxed mb-8">
+          Một không gian kiến trúc đảo nổi Roblox nguyên bản được kiến tạo bởi 
+          <strong class="font-semibold text-neutral-900 dark:text-white">Hồ Đặng Ý Nhi</strong>. 
+          Giao thoa hài hòa giữa phong vị đền đình phương Đông cổ kính, địa hình thung lũng đa tầng và vầng quang năng lượng thiên giới kỳ vĩ.
+        </p>
+
+        <!-- Centered Action Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-14">
+          <a href="#hero-showcase" class="px-6 py-3 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors shadow-lg shadow-black/10 dark:shadow-white/5 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            <span>Trải Nghiệm Toàn Cảnh</span>
+          </a>
+
+          <button onclick="openLightbox(0)" class="px-6 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-100/60 dark:bg-neutral-900/60 text-neutral-800 dark:text-neutral-200 font-mono text-xs uppercase tracking-wider font-semibold hover:border-neutral-900 dark:hover:border-white transition-colors flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+            <span>Phóng To 4K Lightbox</span>
+          </button>
+
+          <a href="#specifications" class="px-6 py-3 rounded-lg border border-transparent text-neutral-600 dark:text-neutral-400 font-mono text-xs uppercase tracking-wider hover:text-black dark:hover:text-white transition-colors flex items-center gap-1.5">
+            <span>Thông Số Kỹ Thuật</span>
+            <span class="font-mono text-sm">→</span>
+          </a>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- CENTERED HERO SHOWCASE VIEWER (FRAME CHÍNH GIỮA) -->
+        <!-- =============================================================== -->
+        <div id="hero-showcase" class="relative max-w-5xl mx-auto">
+          
+          <!-- Outer Architectural Frame with Corner Crosshairs -->
+          <div class="relative p-2 sm:p-3 rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-200/40 dark:bg-neutral-950/60 backdrop-blur-sm shadow-2xl">
+            
+            <!-- Corner Accents (Monochrome Brutalist / Architectural Aesthetic) -->
+            <div class="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-neutral-900 dark:border-white"></div>
+            <div class="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-neutral-900 dark:border-white"></div>
+            <div class="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-neutral-900 dark:border-white"></div>
+            <div class="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-neutral-900 dark:border-white"></div>
+
+            <!-- Main Display Image Container -->
+            <div class="relative rounded-xl overflow-hidden aspect-[16/10] bg-neutral-900 border border-neutral-300 dark:border-neutral-800 group">
+              
+              <!-- Featured Main Image (Switchable via JS) -->
+              <img 
+                id="heroMainImage" 
+                src="assets/images/island-pagoda.jpg" 
+                data-full="assets/images/island-pagoda.png"
+                alt="Roblox Map Island do Hồ Đặng Ý Nhi thực hiện - Góc nhìn Chính Điện Lầu Gác" 
+                class="w-full h-full object-cover transition-opacity duration-300 select-none cursor-pointer"
+                onclick="openCurrentHeroLightbox()"
+              />
+
+              <!-- Top Left HUD Overlay -->
+              <div class="absolute top-3 left-3 sm:top-5 sm:left-5 pointer-events-none">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-black/75 backdrop-blur-md border border-white/10 text-white font-mono text-[10px] sm:text-xs">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span id="heroImageAngle">VIEW 01 / CHÍNH ĐIỆN & THẢM ĐỎ</span>
+                </div>
+              </div>
+
+              <!-- Top Right HUD Overlay -->
+              <div class="absolute top-3 right-3 sm:top-5 sm:right-5 flex items-center gap-2">
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-md bg-black/75 backdrop-blur-md border border-white/10 text-neutral-300 font-mono text-[11px]">
+                  <span>RES: 2192×1366</span>
+                </div>
+                <!-- Fullscreen / Zoom Button -->
+                <button 
+                  onclick="openCurrentHeroLightbox()" 
+                  title="Phóng to ảnh"
+                  class="p-2 sm:p-2.5 rounded-md bg-black/75 hover:bg-black text-white backdrop-blur-md border border-white/20 transition-transform active:scale-95"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                </button>
+              </div>
+
+              <!-- Bottom Bar HUD Overlay -->
+              <div class="absolute bottom-0 inset-x-0 p-3 sm:p-4 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col sm:flex-row items-start sm:items-end justify-between gap-2 text-left">
+                <div>
+                  <h2 id="heroImageTitle" class="text-white font-display text-base sm:text-xl font-bold tracking-tight">
+                    Chính Điện Lầu Gác & Bậc Thang Cổ
+                  </h2>
+                  <p id="heroImageDesc" class="text-neutral-300 text-xs sm:text-sm font-sans max-w-xl line-clamp-2">
+                    Kiến trúc mái ngói cong phong cách phương Đông huyền ảo, thảm đỏ nghênh đón và bầu trời đêm ngập ánh tinh tú.
+                  </p>
+                </div>
+                <div class="flex items-center gap-2 font-mono text-[11px] text-neutral-400">
+                  <span id="heroCoordinates">COORD: [X: 120, Y: 85, Z: -42]</span>
+                </div>
+              </div>
+
+              <!-- Previous / Next Image Nav Arrows on Main Frame -->
+              <button 
+                onclick="prevHeroImage()" 
+                aria-label="Góc nhìn trước"
+                class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 active:scale-95"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button 
+                onclick="nextHeroImage()" 
+                aria-label="Góc nhìn kế tiếp"
+                class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 active:scale-95"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+
+            </div>
+
+            <!-- Centered Thumbnails Navigation Bar Below Image -->
+            <div class="mt-3 pt-2 grid grid-cols-4 gap-2 sm:gap-3">
+              <!-- Thumb 0 -->
+              <button 
+                onclick="switchHeroImage(0)" 
+                id="heroThumb-0" 
+                class="hero-thumb group relative rounded-lg overflow-hidden border-2 border-white dark:border-white transition-all text-left focus:outline-none"
+              >
+                <div class="aspect-[16/10] bg-neutral-900">
+                  <img src="assets/images/island-pagoda-thumb.jpg" alt="Chính Điện Lầu Gác" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                </div>
+                <div class="p-1 sm:p-2 bg-neutral-100 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800">
+                  <p class="font-mono text-[9px] sm:text-[10px] text-neutral-500 uppercase">01 // Pagoda</p>
+                  <p class="text-[10px] sm:text-xs font-semibold text-neutral-900 dark:text-neutral-200 truncate hidden sm:block">Chính Điện</p>
+                </div>
+              </button>
+
+              <!-- Thumb 1 -->
+              <button 
+                onclick="switchHeroImage(1)" 
+                id="heroThumb-1" 
+                class="hero-thumb group relative rounded-lg overflow-hidden border-2 border-transparent hover:border-neutral-400 dark:hover:border-neutral-600 transition-all text-left focus:outline-none"
+              >
+                <div class="aspect-[16/10] bg-neutral-900">
+                  <img src="assets/images/island-terraces-thumb.jpg" alt="Bậc Thang & Lối Đi" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                </div>
+                <div class="p-1 sm:p-2 bg-neutral-100 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800">
+                  <p class="font-mono text-[9px] sm:text-[10px] text-neutral-500 uppercase">02 // Terraces</p>
+                  <p class="text-[10px] sm:text-xs font-semibold text-neutral-900 dark:text-neutral-200 truncate hidden sm:block">Lối Đi Cầu Gỗ</p>
+                </div>
+              </button>
+
+              <!-- Thumb 2 -->
+              <button 
+                onclick="switchHeroImage(2)" 
+                id="heroThumb-2" 
+                class="hero-thumb group relative rounded-lg overflow-hidden border-2 border-transparent hover:border-neutral-400 dark:hover:border-neutral-600 transition-all text-left focus:outline-none"
+              >
+                <div class="aspect-[16/10] bg-neutral-900">
+                  <img src="assets/images/island-grotto-thumb.jpg" alt="Cửa Hang Bí Ẩn" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                </div>
+                <div class="p-1 sm:p-2 bg-neutral-100 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800">
+                  <p class="font-mono text-[9px] sm:text-[10px] text-neutral-500 uppercase">03 // Grotto</p>
+                  <p class="text-[10px] sm:text-xs font-semibold text-neutral-900 dark:text-neutral-200 truncate hidden sm:block">Hang Bí Ẩn</p>
+                </div>
+              </button>
+
+              <!-- Thumb 3 -->
+              <button 
+                onclick="switchHeroImage(3)" 
+                id="heroThumb-3" 
+                class="hero-thumb group relative rounded-lg overflow-hidden border-2 border-transparent hover:border-neutral-400 dark:hover:border-neutral-600 transition-all text-left focus:outline-none"
+              >
+                <div class="aspect-[16/10] bg-neutral-900">
+                  <img src="assets/images/island-aerial-thumb.jpg" alt="Toàn Cảnh Trên Không" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                </div>
+                <div class="p-1 sm:p-2 bg-neutral-100 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800">
+                  <p class="font-mono text-[9px] sm:text-[10px] text-neutral-500 uppercase">04 // Aerial</p>
+                  <p class="text-[10px] sm:text-xs font-semibold text-neutral-900 dark:text-neutral-200 truncate hidden sm:block">Vòng Hào Quang</p>
+                </div>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Bottom Meta Strip -->
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-neutral-500 dark:text-neutral-400 px-2">
+            <div class="flex items-center gap-4">
+              <span>● BẢN QUYỀN THIẾT KẾ: HỒ ĐẶNG Ý NHI</span>
+              <span class="hidden md:inline">• PHONG CÁCH: MYSTICAL ORIENTAL ISLAND</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="inline-block px-2 py-0.5 rounded border border-neutral-300 dark:border-neutral-800 bg-neutral-200/50 dark:bg-neutral-900">HOTKEY: [←] [→] HOẶC CLICK ĐỂ ĐỔI GÓC</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- ARCHITECTURAL HIGHLIGHTS / 4 CỘT TRỤ THIẾT KẾ -->
+    <!-- ========================================================================= -->
+    <section class="py-20 border-b border-neutral-200 dark:border-neutral-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-neutral-200 dark:border-neutral-800/80 gap-4">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">Architectural Philosophy</span>
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-white uppercase mt-1">
+              Đặc Điểm & Điểm Nhấn Bản Đồ
+            </h2>
+          </div>
+          <p class="max-w-md text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-sans">
+            Mỗi chi tiết trên hòn đảo được quy hoạch công phu nhằm đem đến chiều sâu thị giác và tính tương tác cao nhất cho người chơi Roblox.
+          </p>
+        </div>
+
+        <!-- 4 Pillars Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Pillar 1 -->
+          <div class="mono-card p-6 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="font-mono text-xs font-bold text-neutral-400 dark:text-neutral-500">01 // ARCHITECTURE</span>
+                <span class="w-2 h-2 rounded-full bg-neutral-400 dark:bg-neutral-600"></span>
+              </div>
+              <h3 class="font-display text-lg font-bold text-neutral-900 dark:text-white mb-2">
+                Kiến Trúc Lầu Gác Á Đông
+              </h3>
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                Công trình trung tâm được lấy cảm hứng từ lầu các cổ điển với mái ngói cong xanh ngọc, các ban công gỗ nhiều tầng và đường dẫn thảm đỏ trang trọng.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-800/80 flex items-center justify-between text-[11px] font-mono text-neutral-500">
+              <span>TRỌNG TÂM ĐẢO</span>
+              <span>TẦNG CAO NHẤT</span>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="mono-card p-6 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="font-mono text-xs font-bold text-neutral-400 dark:text-neutral-500">02 // VERTICALITY</span>
+                <span class="w-2 h-2 rounded-full bg-neutral-400 dark:bg-neutral-600"></span>
+              </div>
+              <h3 class="font-display text-lg font-bold text-neutral-900 dark:text-white mb-2">
+                Địa Hình Phân Bậc Đa Tầng
+              </h3>
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                Các tầng địa hình được phân chia tự nhiên qua vách đá cao, liên kết bởi hệ thống cầu gỗ, cầu thang giàn và lối đi quanh co đầy tính phiêu lưu.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-800/80 flex items-center justify-between text-[11px] font-mono text-neutral-500">
+              <span>HỆ THỐNG CẦU GỖ</span>
+              <span>3 TẦNG ĐỘ CAO</span>
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="mono-card p-6 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="font-mono text-xs font-bold text-neutral-400 dark:text-neutral-500">03 // CELESTIAL AURA</span>
+                <span class="w-2 h-2 rounded-full bg-neutral-400 dark:bg-neutral-600"></span>
+              </div>
+              <h3 class="font-display text-lg font-bold text-neutral-900 dark:text-white mb-2">
+                Hào Quang Thiên Thần Kỳ Ảo
+              </h3>
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                Tượng thiên sứ sải cánh bên vách đá được bao bọc bởi vầng hào quang xoay chuyển rực rỡ, tạo nên điểm nhấn biểu tượng huyền thoại cho toàn bộ map.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-800/80 flex items-center justify-between text-[11px] font-mono text-neutral-500">
+              <span>HIỆU ỨNG ÁNH SÁNG</span>
+              <span>PORTAL AURA</span>
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="mono-card p-6 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="font-mono text-xs font-bold text-neutral-400 dark:text-neutral-500">04 // ENVIRONMENT</span>
+                <span class="w-2 h-2 rounded-full bg-neutral-400 dark:bg-neutral-600"></span>
+              </div>
+              <h3 class="font-display text-lg font-bold text-neutral-900 dark:text-white mb-2">
+                Hệ Sinh Thái Sống Động
+              </h3>
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                Thảm cỏ xanh mướt điểm xuyết cụm hoa ngũ sắc, nấm dạ quang, đom đóm lấp lánh và rừng thông đại thụ mang lại cảm giác sống động và chân thực.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-800/80 flex items-center justify-between text-[11px] font-mono text-neutral-500">
+              <span>FOLIAGE & VIBE</span>
+              <span>PARTICLE EFFECTS</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- GALLERY SECTION (BỘ SƯU TẬP 4 GÓC NHÌN) -->
+    <!-- ========================================================================= -->
+    <section id="gallery" class="py-20 md:py-28 border-b border-neutral-200 dark:border-neutral-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">[ COMPLETE SHOWCASE GALLERY ]</span>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white uppercase mt-2">
+            Bộ Sưu Tập Hình Ảnh Chi Tiết
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 font-sans">
+            Chiêm ngưỡng 4 phối cảnh chất lượng cao ghi lại trọn vẹn vẻ đẹp của bản đồ Roblox Island do tác giả Hồ Đặng Ý Nhi kiến tạo. Click vào từng ảnh để xem độ phân giải gốc.
+          </p>
+        </div>
+
+        <!-- Gallery Grid (2x2 Asymmetric / Luxury Editorial Layout) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <!-- Card 01: Pagoda -->
+          <div class="mono-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openLightbox(0)">
+            <div class="relative aspect-[16/10] bg-neutral-900 image-zoom-container">
+              <img 
+                src="assets/images/island-pagoda.jpg" 
+                alt="Phối cảnh chính điện lầu gác - Hồ Đặng Ý Nhi"
+                loading="lazy" 
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-4 py-2 rounded-lg bg-black/80 backdrop-blur-md text-white font-mono text-xs uppercase tracking-wider flex items-center gap-2 border border-white/20">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                  <span>Phóng To Chi Tiết</span>
+                </span>
+              </div>
+              <!-- Badge -->
+              <div class="absolute top-4 left-4 font-mono text-[11px] px-2.5 py-1 rounded bg-black/75 backdrop-blur border border-white/10 text-white">
+                VIEW 01 // MAIN SANCTUM
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center justify-between text-xs font-mono text-neutral-500 mb-2">
+                <span>GÓC NHÌN TRUNG TÂM</span>
+                <span>ORIGINAL 2192×1366</span>
+              </div>
+              <h3 class="font-display text-xl font-bold text-neutral-900 dark:text-white mb-2">
+                Chính Điện Lầu Gác & Thềm Bậc Thang Cổ
+              </h3>
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                Khu vực đại điện nguy nga sừng sững giữa bầu trời đêm ngập sao. Lối đi bằng đá được trải thảm đỏ nhung dẫn thẳng lên gian chính, điểm xuyết đèn lồng cổ, khóm hoa xanh lam và nấm đốm phát sáng.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 02: Terraces -->
+          <div class="mono-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openLightbox(1)">
+            <div class="relative aspect-[16/10] bg-neutral-900 image-zoom-container">
+              <img 
+                src="assets/images/island-terraces.jpg" 
+                alt="Bậc thang cầu gỗ và đài tượng đá - Hồ Đặng Ý Nhi"
+                loading="lazy" 
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-4 py-2 rounded-lg bg-black/80 backdrop-blur-md text-white font-mono text-xs uppercase tracking-wider flex items-center gap-2 border border-white/20">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                  <span>Phóng To Chi Tiết</span>
+                </span>
+              </div>
+              <!-- Badge -->
+              <div class="absolute top-4 left-4 font-mono text-[11px] px-2.5 py-1 rounded bg-black/75 backdrop-blur border border-white/10 text-white">
+                VIEW 02 // TERRACES & WALKWAYS
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center justify-between text-xs font-mono text-neutral-500 mb-2">
+                <span>TẦNG HẠ VÀ LỐI ĐI GỖ</span>
+                <span>ORIGINAL 2192×1366</span>
+              </div>
+              <h3 class="font-display text-xl font-bold text-neutral-900 dark:text-white mb-2">
+                Hệ Thống Bậc Thang Cầu Gỗ & Tượng Đá Cổ
+              </h3>
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                Các giàn cầu gỗ chắc chắn bắt qua các sườn đồi, tạo nên tuyến đường giao thông đa tầng phong phú. Tượng đá cổ kính đứng trang nghiêm giữa bãi đá tảng và thảm hoa rực rỡ dưới bóng cây cổ thụ.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 03: Grotto -->
+          <div class="mono-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openLightbox(2)">
+            <div class="relative aspect-[16/10] bg-neutral-900 image-zoom-container">
+              <img 
+                src="assets/images/island-grotto.jpg" 
+                alt="Cửa hang bí ẩn và khu làng trũng - Hồ Đặng Ý Nhi"
+                loading="lazy" 
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-4 py-2 rounded-lg bg-black/80 backdrop-blur-md text-white font-mono text-xs uppercase tracking-wider flex items-center gap-2 border border-white/20">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                  <span>Phóng To Chi Tiết</span>
+                </span>
+              </div>
+              <!-- Badge -->
+              <div class="absolute top-4 left-4 font-mono text-[11px] px-2.5 py-1 rounded bg-black/75 backdrop-blur border border-white/10 text-white">
+                VIEW 03 // HIDDEN GROTTO
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center justify-between text-xs font-mono text-neutral-500 mb-2">
+                <span>CỬA ĐỘNG BÍ MẬT</span>
+                <span>ORIGINAL 2192×1366</span>
+              </div>
+              <h3 class="font-display text-xl font-bold text-neutral-900 dark:text-white mb-2">
+                Cửa Hầm Bí Mật & Thung Lũng Trũng
+              </h3>
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                Cổng vòm đá kiên cố ẩn mình sâu dưới chân vách núi mở ra lối vào khu hầm ngục bí mật. Bên trên là những ngôi nhà mái ngói mộc mạc và giàn cầu gỗ vươn dài ngắm trọn thung lũng.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 04: Aerial -->
+          <div class="mono-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openLightbox(3)">
+            <div class="relative aspect-[16/10] bg-neutral-900 image-zoom-container">
+              <img 
+                src="assets/images/island-aerial.jpg" 
+                alt="Toàn cảnh trên không và vòng hào quang thiên thần - Hồ Đặng Ý Nhi"
+                loading="lazy" 
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-4 py-2 rounded-lg bg-black/80 backdrop-blur-md text-white font-mono text-xs uppercase tracking-wider flex items-center gap-2 border border-white/20">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                  <span>Phóng To Chi Tiết</span>
+                </span>
+              </div>
+              <!-- Badge -->
+              <div class="absolute top-4 left-4 font-mono text-[11px] px-2.5 py-1 rounded bg-black/75 backdrop-blur border border-white/10 text-white">
+                VIEW 04 // CELESTIAL OVERVIEW
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center justify-between text-xs font-mono text-neutral-500 mb-2">
+                <span>TOÀN CẢNH TRÊN KHÔNG</span>
+                <span>ORIGINAL 2192×1366</span>
+              </div>
+              <h3 class="font-display text-xl font-bold text-neutral-900 dark:text-white mb-2">
+                Vòng Hào Quang Thiên Thần & Toàn Cảnh Đảo
+              </h3>
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                Tầm nhìn bao quát từ tầng không phơi bày quy mô hoành tráng của hòn đảo nổi. Tượng thiên sứ giang cánh đón luồng ánh sáng cam ấm áp tương phản ấn tượng với màu xanh mướt của đại ngàn.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TECHNICAL SPECIFICATIONS & BUILD METRICS (THÔNG SỐ KỸ THUẬT) -->
+    <!-- ========================================================================= -->
+    <section id="specifications" class="py-20 border-b border-neutral-200 dark:border-neutral-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- Left Column: Title & Overview -->
+          <div class="lg:col-span-5">
+            <span class="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">Technical Breakdown</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-white uppercase mt-2 mb-4">
+              Thông Số Kỹ Thuật & Kiến Trúc Bản Đồ
+            </h2>
+            <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed mb-6 font-sans">
+              Bản đồ được xây dựng trực tiếp trong môi trường Roblox Studio với tiêu chuẩn tối ưu hóa cao độ, đảm bảo chuyển động mượt mà 60 FPS trên đa nền tảng thiết bị (PC, Mobile, Console).
+            </p>
+
+            <!-- Quick Specs List -->
+            <div class="space-y-3 font-mono text-xs">
+              <div class="flex items-center justify-between py-2.5 border-b border-neutral-200 dark:border-neutral-800">
+                <span class="text-neutral-500">TÁC GIẢ SÁNG LẬP:</span>
+                <span class="font-bold text-neutral-900 dark:text-white">HỒ ĐẶNG Ý NHI</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5 border-b border-neutral-200 dark:border-neutral-800">
+                <span class="text-neutral-500">MÔI TRƯỜNG PHÁT TRIỂN:</span>
+                <span class="font-bold text-neutral-900 dark:text-white">ROBLOX STUDIO 2026</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5 border-b border-neutral-200 dark:border-neutral-800">
+                <span class="text-neutral-500">PHÂN LOẠI MỤC TIÊU:</span>
+                <span class="font-bold text-neutral-900 dark:text-white">FANTASY ISLAND / HUB / RPG</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5 border-b border-neutral-200 dark:border-neutral-800">
+                <span class="text-neutral-500">HỆ THỐNG ÁNH SÁNG:</span>
+                <span class="font-bold text-neutral-900 dark:text-white">FUTURE LIGHTING + SUNRAYS</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5 border-b border-neutral-200 dark:border-neutral-800">
+                <span class="text-neutral-500">HIỆU NĂNG TỐI ƯU:</span>
+                <span class="font-bold text-emerald-500">STABLE 60+ FPS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Specs Cards Grid -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <div class="mono-card p-5 rounded-xl">
+              <div class="font-mono text-[11px] text-neutral-500 uppercase mb-2">01 // TERRAIN VOXELS</div>
+              <h4 class="font-display font-bold text-base text-neutral-900 dark:text-white mb-1.5">Địa Hình Đảo Nổi Đa Tầng</h4>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">
+                Tổ chức vách núi phân tầng với chất liệu đá, đất và cỏ mướt. Tối ưu hoá collision giúp người chơi di chuyển mượt mà không vấp kẹt.
+              </p>
+            </div>
+
+            <div class="mono-card p-5 rounded-xl">
+              <div class="font-mono text-[11px] text-neutral-500 uppercase mb-2">02 // MODULAR ASSETS</div>
+              <h4 class="font-display font-bold text-base text-neutral-900 dark:text-white mb-1.5">Mô Hình Kiến Trúc Modun</h4>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">
+                Lầu gác, hàng rào, cầu gỗ và cổng đá được thiết kế theo tỷ lệ chuẩn Roblox nhân vật, tương thích tốt với mọi gói animation.
+              </p>
+            </div>
+
+            <div class="mono-card p-5 rounded-xl">
+              <div class="font-mono text-[11px] text-neutral-500 uppercase mb-2">03 // ATMOSPHERE & FX</div>
+              <h4 class="font-display font-bold text-base text-neutral-900 dark:text-white mb-1.5">Khí Quyển & Hạt Dạ Quang</h4>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">
+                Hệ thống Particle Emitter tạo bụi sáng, đom đóm dạ quang bay lơ lửng quanh thảm nấm và vòng hào quang thiên sứ xoay vần huyền bí.
+              </p>
+            </div>
+
+            <div class="mono-card p-5 rounded-xl">
+              <div class="font-mono text-[11px] text-neutral-500 uppercase mb-2">04 // LIGHTING TUNING</div>
+              <h4 class="font-display font-bold text-base text-neutral-900 dark:text-white mb-1.5">Ánh Sáng Twilight Sky</h4>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">
+                Phối màu ánh sáng hoàng hôn pha đêm (Twilight) với bóng đổ mềm mại, làm nổi bật màu xanh ngọc của mái ngói và thảm đỏ lầu gác.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- CREATOR PROFILE & PROJECT CERTIFICATION (CHỨNG NHẬN DỰ ÁN HỒ ĐẶNG Ý NHI) -->
+    <!-- ========================================================================= -->
+    <section id="certification" class="py-20 md:py-28 border-b border-neutral-200 dark:border-neutral-800">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Center Certificate Pass Card -->
+        <div class="relative p-6 sm:p-10 rounded-2xl border-2 border-neutral-300 dark:border-neutral-800 bg-neutral-100/70 dark:bg-neutral-950/80 backdrop-blur-md shadow-2xl">
+          
+          <!-- Top Watermark & Serial -->
+          <div class="flex items-center justify-between pb-6 border-b border-neutral-300 dark:border-neutral-800/80 text-xs font-mono">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-black dark:bg-white"></span>
+              <span class="font-bold tracking-widest text-neutral-900 dark:text-white">PROJECT CERTIFICATION PASS</span>
+            </div>
+            <div class="text-neutral-500 tracking-wider">
+              VERIFIED NO: <strong class="text-neutral-900 dark:text-white">YN-2026-CERT-001</strong>
+            </div>
+          </div>
+
+          <!-- Main Certificate Body -->
+          <div class="py-8 text-center sm:text-left sm:flex sm:items-center sm:justify-between gap-8">
+            <div class="space-y-4 max-w-xl">
+              <span class="text-xs font-mono uppercase tracking-widest text-neutral-500">Creator & World Builder</span>
+              <h3 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-white">
+                HỒ ĐẶNG Ý NHI
+              </h3>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                Chứng nhận tác phẩm thiết kế môi trường bản đồ đảo Roblox (Roblox Map Island Showcase) là sản phẩm sáng tạo độc bản, được thực hiện với tiêu chuẩn thẩm mỹ cao cấp, kỹ thuật dựng hình chi tiết và bố cục không gian ấn tượng.
+              </p>
+              
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="px-2.5 py-1 rounded bg-neutral-200 dark:bg-neutral-900 text-[11px] font-mono text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-800">Roblox Environmental Design</span>
+                <span class="px-2.5 py-1 rounded bg-neutral-200 dark:bg-neutral-900 text-[11px] font-mono text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-800">3D Level Staging</span>
+                <span class="px-2.5 py-1 rounded bg-neutral-200 dark:bg-neutral-900 text-[11px] font-mono text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-800">Atmospheric Lighting</span>
+              </div>
+            </div>
+
+            <!-- Monogram Seal Stamp -->
+            <div class="mt-8 sm:mt-0 flex-shrink-0 flex flex-col items-center justify-center">
+              <div class="w-28 h-28 rounded-full border-2 border-dashed border-neutral-400 dark:border-neutral-600 p-2 flex items-center justify-center">
+                <div class="w-full h-full rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-200/50 dark:bg-neutral-900 flex flex-col items-center justify-center text-center p-2">
+                  <span class="font-display font-black text-lg tracking-tighter text-neutral-900 dark:text-white">Ý NHI</span>
+                  <span class="font-mono text-[8px] uppercase tracking-wider text-neutral-500">VERIFIED</span>
+                  <span class="font-mono text-[7px] text-neutral-400">2026 AUTHENTIC</span>
+                </div>
+              </div>
+              <span class="font-mono text-[10px] text-neutral-400 mt-2 tracking-widest uppercase">OFFICIAL SEAL</span>
+            </div>
+          </div>
+
+          <!-- Bottom Footer Details -->
+          <div class="pt-6 border-t border-neutral-300 dark:border-neutral-800/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[11px] font-mono text-neutral-500">
+            <div>
+              <span class="block text-neutral-400 dark:text-neutral-600 text-[9px] uppercase">PRODUCT</span>
+              <span class="font-semibold text-neutral-900 dark:text-white">Roblox Island Map</span>
+            </div>
+            <div>
+              <span class="block text-neutral-400 dark:text-neutral-600 text-[9px] uppercase">PORTFOLIO REPO</span>
+              <span class="font-semibold text-neutral-900 dark:text-white">NhiCertification</span>
+            </div>
+            <div>
+              <span class="block text-neutral-400 dark:text-neutral-600 text-[9px] uppercase">RELEASE</span>
+              <span class="font-semibold text-neutral-900 dark:text-white">October 2026</span>
+            </div>
+            <div>
+              <span class="block text-neutral-400 dark:text-neutral-600 text-[9px] uppercase">STATUS</span>
+              <span class="font-semibold text-emerald-500">● CERTIFIED</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- CALL TO ACTION / EXPLORE -->
+    <!-- ========================================================================= -->
+    <section class="py-20 text-center">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-white uppercase mb-3">
+          Trải Nghiệm Tác Phẩm Bản Đồ
+        </h2>
+        <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto mb-8 font-sans">
+          Khám phá toàn bộ không gian đảo tiên Roblox được thực hiện bởi tác giả Hồ Đặng Ý Nhi qua chế độ xem toàn màn hình độ phân giải cao.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <button onclick="openLightbox(0)" class="px-6 py-3 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-black font-mono text-xs uppercase tracking-wider font-semibold hover:opacity-90 transition-opacity flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Bắt Đầu Trải Nghiệm Visual</span>
+          </button>
+          <a href="#overview" class="px-6 py-3 rounded-lg border border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 font-mono text-xs uppercase tracking-wider hover:border-neutral-900 dark:hover:border-white transition-colors">
+            <span>Quay Về Đầu Trang ↑</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-neutral-200 dark:border-neutral-800 bg-neutral-100/60 dark:bg-neutral-950 py-12 text-xs font-mono text-neutral-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded border border-neutral-300 dark:border-neutral-700 bg-neutral-200 dark:bg-neutral-900 flex items-center justify-center font-bold text-[11px] text-neutral-900 dark:text-white">
+          ÝN
+        </div>
+        <div>
+          <span class="font-bold text-neutral-900 dark:text-white">HỒ ĐẶNG Ý NHI</span>
+          <span class="text-neutral-400"> — ROBLOX MAP ISLAND PRODUCT</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="#overview" class="hover:text-black dark:hover:text-white transition-colors">Tổng Quan</a>
+        <a href="#gallery" class="hover:text-black dark:hover:text-white transition-colors">Bộ Sưu Tập</a>
+        <a href="#specifications" class="hover:text-black dark:hover:text-white transition-colors">Thông Số</a>
+        <a href="#certification" class="hover:text-black dark:hover:text-white transition-colors">Chứng Nhận</a>
+      </div>
+
+      <div>
+        <span>© 2026 HỒ ĐẶNG Ý NHI. ALL RIGHTS RESERVED.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- INTERACTIVE LIGHTBOX MODAL (PHÓNG TO 4K TOÀN MÀN HÌNH) -->
+  <!-- ========================================================================= -->
+  <div 
+    id="lightboxModal" 
+    class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl hidden flex-col justify-between p-4 sm:p-6 opacity-0 transition-opacity duration-300"
+    role="dialog" 
+    aria-modal="true"
+    aria-label="Xem ảnh phóng to"
+  >
+    
+    <!-- Lightbox Top Controls -->
+    <div class="flex items-center justify-between z-10">
+      <div class="flex items-center gap-3">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span id="lbCounter" class="font-mono text-xs sm:text-sm text-neutral-300 font-semibold tracking-wider">01 / 04</span>
+        <span class="hidden sm:inline text-neutral-600">|</span>
+        <span id="lbTitle" class="hidden sm:inline text-xs sm:text-sm text-white font-medium">Chính Điện Lầu Gác & Bậc Thang Cổ</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a 
+          id="lbDownloadBtn" 
+          href="assets/images/island-pagoda.png" 
+          download="Roblox-Island-HoDangYNhi.png"
+          title="Tải ảnh gốc PNG 2192×1366"
+          class="px-3 py-1.5 rounded-lg border border-neutral-700 bg-neutral-900/80 hover:bg-neutral-800 text-xs font-mono text-neutral-300 flex items-center gap-1.5 transition-colors"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span class="hidden sm:inline">Tải Bản Gốc HD</span>
+        </a>
+
+        <button 
+          onclick="closeLightbox()" 
+          title="Đóng (ESC)"
+          class="p-2 rounded-lg border border-neutral-700 bg-neutral-900/80 hover:bg-neutral-800 text-white transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Lightbox Center Viewport with Nav Arrows -->
+    <div class="relative flex-1 flex items-center justify-center my-4 overflow-hidden select-none">
+      
+      <!-- Prev Button -->
+      <button 
+        onclick="prevLightboxImage()" 
+        aria-label="Ảnh trước"
+        class="absolute left-2 sm:left-4 z-10 w-11 h-11 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-all hover:scale-105 active:scale-95"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+
+      <!-- Center Big Image -->
+      <img 
+        id="lbImage" 
+        src="assets/images/island-pagoda.png" 
+        alt="Roblox Map Island by Hồ Đặng Ý Nhi" 
+        class="max-h-full max-w-full object-contain rounded-lg shadow-2xl transition-all duration-200"
+      />
+
+      <!-- Next Button -->
+      <button 
+        onclick="nextLightboxImage()" 
+        aria-label="Ảnh kế tiếp"
+        class="absolute right-2 sm:right-4 z-10 w-11 h-11 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-all hover:scale-105 active:scale-95"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </button>
+
+    </div>
+
+    <!-- Lightbox Bottom Caption & Meta -->
+    <div class="z-10 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left text-xs font-mono text-neutral-400">
+      <div>
+        <p id="lbCaption" class="text-neutral-300 font-sans max-w-2xl text-xs sm:text-sm">
+          Kiến trúc mái ngói cong phong cách phương Đông huyền ảo, thảm đỏ nghênh đón và bầu trời đêm ngập ánh tinh tú.
+        </p>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-[10px]">TÁC GIẢ: HỒ ĐẶNG Ý NHI</span>
+        <span class="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-[10px]">ESC: THOÁT</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Product Image Dataset
+    const galleryItems = [
+      {
+        id: 0,
+        title: "Chính Điện Lầu Gác & Bậc Thang Cổ",
+        angle: "VIEW 01 / CHÍNH ĐIỆN & THẢM ĐỎ",
+        coord: "COORD: [X: 120, Y: 85, Z: -42]",
+        desc: "Khu vực đại điện nguy nga sừng sững giữa bầu trời đêm ngập sao. Lối đi bằng đá được trải thảm đỏ nhung dẫn thẳng lên gian chính, điểm xuyết đèn lồng cổ, khóm hoa xanh lam và nấm đốm phát sáng.",
+        mainJpg: "assets/images/island-pagoda.jpg",
+        fullPng: "assets/images/island-pagoda.png",
+      },
+      {
+        id: 1,
+        title: "Hệ Thống Bậc Thang Cầu Gỗ & Tượng Đá Cổ",
+        angle: "VIEW 02 / BẬC THANG & CẦU GỖ",
+        coord: "COORD: [X: 74, Y: 32, Z: 18]",
+        desc: "Các giàn cầu gỗ chắc chắn bắt qua các sườn đồi, tạo nên tuyến đường giao thông đa tầng phong phú. Tượng đá cổ kính đứng trang nghiêm giữa bãi đá tảng và thảm hoa rực rỡ dưới bóng cây cổ thụ.",
+        mainJpg: "assets/images/island-terraces.jpg",
+        fullPng: "assets/images/island-terraces.png",
+      },
+      {
+        id: 2,
+        title: "Cửa Hầm Bí Mật & Thung Lũng Trũng",
+        angle: "VIEW 03 / CỬA HẦM & NHÀ GỖ",
+        coord: "COORD: [X: -15, Y: 14, Z: -80]",
+        desc: "Cổng vòm đá kiên cố ẩn mình sâu dưới chân vách núi mở ra lối vào khu hầm ngục bí mật. Bên trên là những ngôi nhà mái ngói mộc mạc và giàn cầu gỗ vươn dài ngắm trọn thung lũng.",
+        mainJpg: "assets/images/island-grotto.jpg",
+        fullPng: "assets/images/island-grotto.png",
+      },
+      {
+        id: 3,
+        title: "Vòng Hào Quang Thiên Thần & Toàn Cảnh Đảo",
+        angle: "VIEW 04 / TOÀN CẢNH TRÊN KHÔNG",
+        coord: "COORD: [X: 210, Y: 180, Z: 95]",
+        desc: "Tầm nhìn bao quát từ tầng không phơi bày quy mô hoành tráng của hòn đảo nổi. Tượng thiên sứ giang cánh đón luồng ánh sáng cam ấm áp tương phản ấn tượng với màu xanh mướt của đại ngàn.",
+        mainJpg: "assets/images/island-aerial.jpg",
+        fullPng: "assets/images/island-aerial.png",
+      }
+    ];
+
+    let currentHeroIndex = 0;
+    let currentLightboxIndex = 0;
+
+    // Switch Hero Showcase Image
+    function switchHeroImage(index) {
+      if (index < 0 || index >= galleryItems.length) return;
+      currentHeroIndex = index;
+      const item = galleryItems[index];
+
+      const imgEl = document.getElementById('heroMainImage');
+      imgEl.style.opacity = '0.3';
+
+      setTimeout(() => {
+        imgEl.src = item.mainJpg;
+        imgEl.setAttribute('data-full', item.fullPng);
+        document.getElementById('heroImageAngle').textContent = item.angle;
+        document.getElementById('heroImageTitle').textContent = item.title;
+        document.getElementById('heroImageDesc').textContent = item.desc;
+        document.getElementById('heroCoordinates').textContent = item.coord;
+        imgEl.style.opacity = '1';
+      }, 150);
+
+      // Update thumbnail borders
+      for (let i = 0; i < galleryItems.length; i++) {
+        const thumbBtn = document.getElementById(`heroThumb-${i}`);
+        if (!thumbBtn) continue;
+        if (i === index) {
+          thumbBtn.classList.add('border-neutral-900', 'dark:border-white');
+          thumbBtn.classList.remove('border-transparent');
+        } else {
+          thumbBtn.classList.remove('border-neutral-900', 'dark:border-white');
+          thumbBtn.classList.add('border-transparent');
+        }
+      }
+    }
+
+    function prevHeroImage() {
+      const newIndex = (currentHeroIndex - 1 + galleryItems.length) % galleryItems.length;
+      switchHeroImage(newIndex);
+    }
+
+    function nextHeroImage() {
+      const newIndex = (currentHeroIndex + 1) % galleryItems.length;
+      switchHeroImage(newIndex);
+    }
+
+    function openCurrentHeroLightbox() {
+      openLightbox(currentHeroIndex);
+    }
+
+    // Lightbox Modal Functions
+    const modal = document.getElementById('lightboxModal');
+    const lbImage = document.getElementById('lbImage');
+    const lbCounter = document.getElementById('lbCounter');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbCaption = document.getElementById('lbCaption');
+    const lbDownloadBtn = document.getElementById('lbDownloadBtn');
+
+    function openLightbox(index) {
+      currentLightboxIndex = index;
+      updateLightboxContent();
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+      }, 10);
+    }
+
+    function closeLightbox() {
+      modal.classList.add('opacity-0');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }, 300);
+    }
+
+    function updateLightboxContent() {
+      const item = galleryItems[currentLightboxIndex];
+      lbImage.style.opacity = '0.3';
+      setTimeout(() => {
+        lbImage.src = item.fullPng;
+        lbCounter.textContent = `0${currentLightboxIndex + 1} / 0${galleryItems.length}`;
+        lbTitle.textContent = item.title;
+        lbCaption.textContent = item.desc;
+        lbDownloadBtn.href = item.fullPng;
+        lbDownloadBtn.setAttribute('download', `Roblox-Island-HoDangYNhi-${item.id + 1}.png`);
+        lbImage.style.opacity = '1';
+      }, 120);
+    }
+
+    function prevLightboxImage() {
+      currentLightboxIndex = (currentLightboxIndex - 1 + galleryItems.length) % galleryItems.length;
+      updateLightboxContent();
+    }
+
+    function nextLightboxImage() {
+      currentLightboxIndex = (currentLightboxIndex + 1) % galleryItems.length;
+      updateLightboxContent();
+    }
+
+    // Keyboard Shortcuts
+    document.addEventListener('keydown', (e) => {
+      const isLightboxOpen = !modal.classList.contains('hidden');
+      if (isLightboxOpen) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') prevLightboxImage();
+        if (e.key === 'ArrowRight') nextLightboxImage();
+      } else {
+        if (e.key === 'ArrowLeft') prevHeroImage();
+        if (e.key === 'ArrowRight') nextHeroImage();
+      }
+    });
+
+    // Theme Toggle
+    const themeToggleBtn = document.getElementById('themeToggle');
+    themeToggleBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // Restore user theme preference
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</body>
+</html>
